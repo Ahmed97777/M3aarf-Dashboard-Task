@@ -52,11 +52,11 @@ DELETE /tasks/:id → Delete a task
 ## 🖥️ Getting Started
 
 1. Clone the repo
-   git clone https://github.com/your-username/to-do-project-ahmed-khorkhash.git
-   cd to-do-project-ahmed-khorkhash
-2. Install dependencies
-   npm install
-3. Run the mock API
-   npx json-server --watch db.json --port 4000
-4. Run the development server
-   npm run dev
+
+```bash
+git clone https://github.com/your-username/to-do-project-ahmed-khorkhash.git
+cd to-do-project-ahmed-khorkhash
+npm install
+npx json-server --watch db.json --port 4000
+npm run dev
+```
