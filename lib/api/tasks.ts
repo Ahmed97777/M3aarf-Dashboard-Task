@@ -14,6 +14,7 @@ export async function createTask(task: {
   title: string;
   description: string;
   column: string;
+  priority?: string;
 }) {
   const res = await fetch(BASE_URL, {
     method: "POST",
@@ -36,6 +37,7 @@ export async function updateTask(
     title: string;
     description: string;
     column: string;
+    priority?: string;
   },
 ) {
   const res = await fetch(`${BASE_URL}/${id}`, {

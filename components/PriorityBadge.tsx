@@ -12,8 +12,8 @@ const PRIORITY_STYLES: Record<
 
 function PriorityBadge({ priority }: { priority?: Priority }) {
   if (!priority) return null;
-
   const s = PRIORITY_STYLES[priority];
+
   return (
     <Chip
       label={priority}

@@ -1,8 +1,13 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import { getTasks } from "@/lib/api/tasks";
-import { Task, ColumnType, COLUMNS } from "@/types/taskTypes";
+import { useQuery } from "@tanstack/react-query";
+import TaskModal from "./TaskModal";
+import KanbanColumn from "./KanbanColumn";
+import SearchIcon from "@mui/icons-material/Search";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import { Task, ColumnType, COLUMNS, ModalState } from "@/types/taskTypes";
 import {
   Box,
   Typography,
@@ -11,11 +16,10 @@ import {
   InputAdornment,
   TextField,
 } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import KanbanColumn from "./KanbanColumn";
 
 export default function KanbanBoard() {
+  const [modalState, setModalState] = useState<ModalState>(null);
+
   const {
     data: tasks = [],
     isLoading,
@@ -28,12 +32,9 @@ export default function KanbanBoard() {
   const tasksByColumn = (col: ColumnType) =>
     tasks.filter((t) => t.column === col);
 
-  const totalCount = tasks.length;
-
   return (
-    <Box
-      sx={{ minHeight: "100vh", bgcolor: "#f5f5f5", fontFamily: "sans-serif" }}
-    >
+    <Box sx={{ minHeight: "100vh", bgcolor: "#f5f5f5" }}>
+      {/* Top bar */}
       <Box
         sx={{
           px: 3,
@@ -45,7 +46,7 @@ export default function KanbanBoard() {
           justifyContent: "space-between",
         }}
       >
-        <div className="flex gap-1 items-center justify-center">
+        <div className="flex gap-1 items-center">
           <DashboardIcon
             className="text-white bg-[#3c64d7] border border-blue-600 rounded-md p-1"
             sx={{ fontSize: 28 }}
@@ -64,14 +65,14 @@ export default function KanbanBoard() {
             >
               Kanban Board
             </Typography>
+
             <Typography sx={{ fontSize: "0.7rem", color: "#353638" }}>
-              {totalCount} tasks
+              {tasks.length} tasks
             </Typography>
           </div>
         </div>
 
         <TextField
-          className="text-[#616b74] bg-[#e6e6eb] border rounded-md p-1"
           placeholder="Search tasks..."
           size="small"
           slotProps={{
@@ -90,27 +91,25 @@ export default function KanbanBoard() {
               bgcolor: "#e6e6eb",
               borderRadius: 2,
               "& fieldset": { borderColor: "#e5e7eb" },
-              "& .MuiInputBase-input::placeholder": {
-                color: "#5f6872",
-                fontWeight: 600,
-                opacity: 0.7,
-              },
             },
           }}
         />
       </Box>
 
+      {/* Board */}
       <Box sx={{ p: 3 }}>
         {isLoading && (
           <Box sx={{ display: "flex", justifyContent: "center", pt: 8 }}>
             <CircularProgress size={32} />
           </Box>
         )}
+
         {isError && (
           <Alert severity="error" sx={{ mb: 2 }}>
             Failed to load tasks. Make sure json-server is running on port 4000.
           </Alert>
         )}
+
         {!isLoading && !isError && (
           <Box sx={{ display: "flex", gap: 2, alignItems: "flex-start" }}>
             {COLUMNS.map((col) => (
@@ -118,11 +117,27 @@ export default function KanbanBoard() {
                 key={col.id}
                 column={col}
                 tasks={tasksByColumn(col.id)}
+                onAddTask={(column) =>
+                  setModalState({ mode: "create", column })
+                }
+                onEditTask={(task) => setModalState({ mode: "edit", task })}
+                onDeleteTask={(task) => setModalState({ mode: "delete", task })}
               />
             ))}
           </Box>
         )}
       </Box>
+
+      {/* Modal */}
+      <TaskModal
+        key={
+          modalState
+            ? `${modalState.mode}-${"task" in modalState ? modalState.task.id : modalState.column}`
+            : "closed"
+        }
+        state={modalState}
+        onClose={() => setModalState(null)}
+      />
     </Box>
   );
 }

@@ -1,15 +1,23 @@
-import { COLUMNS, Task } from "@/types/taskTypes";
-import { Box, Typography } from "@mui/material";
 import TaskCard from "./TaskCard";
 import AddTaskButton from "./AddTaskButton";
+import { Box, Typography } from "@mui/material";
+import { COLUMNS, Task, ColumnType } from "@/types/taskTypes";
+
+interface KanbanColumnProps {
+  column: (typeof COLUMNS)[number];
+  tasks: Task[];
+  onAddTask: (column: ColumnType) => void;
+  onEditTask: (task: Task) => void;
+  onDeleteTask: (task: Task) => void;
+}
 
 function KanbanColumn({
   column,
   tasks,
-}: {
-  column: (typeof COLUMNS)[number];
-  tasks: Task[];
-}) {
+  onAddTask,
+  onEditTask,
+  onDeleteTask,
+}: KanbanColumnProps) {
   return (
     <Box
       sx={{
@@ -64,13 +72,18 @@ function KanbanColumn({
         </Box>
       </Box>
 
-      <Box sx={{}}>
+      <Box>
         {tasks.map((task) => (
-          <TaskCard key={task.id} task={task} />
+          <TaskCard
+            key={task.id}
+            task={task}
+            onEdit={onEditTask}
+            onDelete={onDeleteTask}
+          />
         ))}
       </Box>
 
-      <AddTaskButton />
+      <AddTaskButton onClick={() => onAddTask(column.id)} />
     </Box>
   );
 }

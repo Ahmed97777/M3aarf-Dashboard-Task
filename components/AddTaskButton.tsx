@@ -1,9 +1,10 @@
 import { Box } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
-function AddTaskButton() {
+function AddTaskButton({ onClick }: { onClick: () => void }) {
   return (
     <Box
+      onClick={onClick}
       sx={{
         mt: 1,
         py: 1.5,

@@ -1,4 +1,4 @@
-This is a To Do Dashboard.
+This is a To Do Dashboard made for a M3aarf company.
 
 ```
 to-do-project-ahmed-khorkhash
@@ -8,6 +8,14 @@ to-do-project-ahmed-khorkhash
 │  ├─ page.tsx
 │  └─ reactQueryProvider.tsx
 ├─ components
+│  ├─ AddTaskButton.tsx
+│  ├─ CreateEditMode.tsx
+│  ├─ DeleteMode.tsx
+│  ├─ KanbanBoard.tsx
+│  ├─ KanbanColumn.tsx
+│  ├─ PriorityBadge.tsx
+│  ├─ TaskCard.tsx
+│  └─ TaskModal.tsx
 ├─ db.json
 ├─ eslint.config.mjs
 ├─ lib
@@ -21,6 +29,6 @@ to-do-project-ahmed-khorkhash
 ├─ README.md
 ├─ tsconfig.json
 └─ types
-   └─ task.ts
+   └─ taskTypes.ts
 
 ```

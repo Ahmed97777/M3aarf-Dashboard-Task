@@ -19,3 +19,9 @@ export const COLUMNS: {
   { id: "review", label: "IN REVIEW", dotColor: "#8c46be" },
   { id: "done", label: "DONE", dotColor: "#419673" },
 ];
+
+export type ModalState =
+  | { mode: "create"; column: ColumnType }
+  | { mode: "edit"; task: Task }
+  | { mode: "delete"; task: Task }
+  | null;
