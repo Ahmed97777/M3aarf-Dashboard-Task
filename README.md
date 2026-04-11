@@ -51,8 +51,6 @@ DELETE /tasks/:id → Delete a task
 
 ## 🖥️ Getting Started
 
-1. Clone the repo
-
 ```bash
 git clone https://github.com/your-username/to-do-project-ahmed-khorkhash.git
 cd to-do-project-ahmed-khorkhash

@@ -21,7 +21,7 @@ function KanbanColumn({
   return (
     <Box
       sx={{
-        height: "100vh",
+        height: "80vh",
         flex: "1 1 0",
         minWidth: 240,
         maxWidth: 320,
@@ -72,7 +72,11 @@ function KanbanColumn({
         </Box>
       </Box>
 
-      <Box>
+      <Box
+        sx={{
+          overflow: "auto",
+        }}
+      >
         {tasks.map((task) => (
           <TaskCard
             key={task.id}
