@@ -36,6 +36,12 @@ The UI follows the provided design:
 
 ![Dashboard Design](public/m3aarf_dashboard_design.png)
 
+## 🧩 Implementation Preview
+
+Below is the actual implementation of the dashboard based on the provided design:
+
+![Implementation Preview](public/m3aarf_dashboard_implementation.png)
+
 ## 🧪 API (Mock Server)
 
 This project uses json-server as a local mock API.
