@@ -2,6 +2,7 @@ import TaskCard from "./TaskCard";
 import AddTaskButton from "./AddTaskButton";
 import { Box, Typography } from "@mui/material";
 import { COLUMNS, Task, ColumnType } from "@/types/taskTypes";
+import { useDroppable } from "@dnd-kit/core";
 
 interface KanbanColumnProps {
   column: (typeof COLUMNS)[number];
@@ -18,18 +19,22 @@ function KanbanColumn({
   onEditTask,
   onDeleteTask,
 }: KanbanColumnProps) {
+  const { setNodeRef, isOver } = useDroppable({ id: column.id });
+
   return (
     <Box
+      ref={setNodeRef}
       sx={{
         height: "80vh",
         flex: "1 1 0",
         minWidth: 240,
         maxWidth: 320,
-        bgcolor: "#ebf0f0",
+        bgcolor: isOver ? "#dde6e6" : "#ebf0f0", // subtle highlight on hover
         borderRadius: 2.5,
         p: 2,
         display: "flex",
         flexDirection: "column",
+        transition: "background-color 0.15s",
       }}
     >
       <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 2 }}>
@@ -42,7 +47,6 @@ function KanbanColumn({
             flexShrink: 0,
           }}
         />
-
         <Typography
           sx={{
             fontFamily: "'JetBrains Mono', monospace",
@@ -55,7 +59,6 @@ function KanbanColumn({
         >
           {column.label}
         </Typography>
-
         <Box
           sx={{
             ml: 0.5,
@@ -72,11 +75,7 @@ function KanbanColumn({
         </Box>
       </Box>
 
-      <Box
-        sx={{
-          overflow: "auto",
-        }}
-      >
+      <Box sx={{ overflow: "auto" }}>
         {tasks.map((task) => (
           <TaskCard
             key={task.id}
