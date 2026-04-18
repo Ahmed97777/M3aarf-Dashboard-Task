@@ -29,7 +29,7 @@ function KanbanColumn({
         flex: "1 1 0",
         minWidth: 240,
         maxWidth: 320,
-        bgcolor: isOver ? "#dde6e6" : "#ebf0f0", // subtle highlight on hover
+        bgcolor: isOver ? "#dde6e6" : "#ebf0f0",
         borderRadius: 2.5,
         p: 2,
         display: "flex",

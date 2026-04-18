@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getTasks, updateTask } from "@/lib/api/tasks";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import TaskModal from "./TaskModal";
@@ -27,10 +27,24 @@ import {
   TextField,
 } from "@mui/material";
 
+function useDebounce<T>(value: T, delay: number): T {
+  const [debounced, setDebounced] = useState(value);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setDebounced(value), delay);
+    return () => clearTimeout(timer);
+  }, [value, delay]);
+
+  return debounced;
+}
+
 export default function KanbanBoard() {
   const [modalState, setModalState] = useState<ModalState>(null);
   const [activeTask, setActiveTask] = useState<Task | null>(null);
+  const [searchInput, setSearchInput] = useState("");
   const queryClient = useQueryClient();
+
+  const debouncedSearch = useDebounce(searchInput.trim().toLowerCase(), 300);
 
   const {
     data: tasks = [],
@@ -43,7 +57,7 @@ export default function KanbanBoard() {
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
-      activationConstraint: { distance: 5 }, // prevent accidental drags on click
+      activationConstraint: { distance: 5 },
     }),
   );
 
@@ -63,12 +77,10 @@ export default function KanbanBoard() {
 
     if (!task || task.column === newColumn) return;
 
-    // Optimistic update
     queryClient.setQueryData<Task[]>(["tasks"], (old = []) =>
       old.map((t) => (t.id === taskId ? { ...t, column: newColumn } : t)),
     );
 
-    // Persist to API, roll back on failure
     updateTask(taskId, { ...task, column: newColumn }).catch(() => {
       queryClient.setQueryData<Task[]>(["tasks"], (old = []) =>
         old.map((t) => (t.id === taskId ? { ...t, column: task.column } : t)),
@@ -76,8 +88,16 @@ export default function KanbanBoard() {
     });
   }
 
+  const filteredTasks = debouncedSearch
+    ? tasks.filter(
+        (t) =>
+          t.title.trim().toLowerCase().includes(debouncedSearch) ||
+          t.description.trim().toLowerCase().includes(debouncedSearch),
+      )
+    : tasks;
+
   const tasksByColumn = (col: ColumnType) =>
-    tasks.filter((t) => t.column === col);
+    filteredTasks.filter((t) => t.column === col);
 
   return (
     <DndContext
@@ -117,7 +137,9 @@ export default function KanbanBoard() {
                 Kanban Board
               </Typography>
               <Typography sx={{ fontSize: "0.7rem", color: "#353638" }}>
-                {tasks.length} tasks
+                {debouncedSearch
+                  ? `${filteredTasks.length} of ${tasks.length} tasks`
+                  : `${tasks.length} tasks`}
               </Typography>
             </div>
           </div>
@@ -125,6 +147,8 @@ export default function KanbanBoard() {
           <TextField
             placeholder="Search tasks..."
             size="small"
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
             slotProps={{
               input: {
                 startAdornment: (

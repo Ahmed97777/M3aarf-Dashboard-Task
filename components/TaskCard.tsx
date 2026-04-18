@@ -39,19 +39,15 @@ function TaskCard({
         transition: "box-shadow 0.2s, opacity 0.15s",
         cursor: isDragging ? "grabbing" : "grab",
         position: "relative",
-        // Hide the original card while its overlay is floating
         opacity: isDragging && !isDragOverlay ? 0 : 1,
-        // Give the overlay a lifted shadow
         ...(isDragOverlay && {
           boxShadow: "0 8px 24px rgba(0,0,0,0.13)",
           rotate: "1.5deg",
         }),
       }}
-      // Only attach drag listeners to the card body, not the action buttons
       {...listeners}
       {...attributes}
     >
-      {/* Action buttons — stop propagation so they don't trigger drag */}
       <Box
         className="task-actions"
         sx={{
