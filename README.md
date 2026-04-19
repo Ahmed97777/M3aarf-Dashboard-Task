@@ -6,54 +6,56 @@ A Kanban-style ToDo dashboard built with Next.js, React Query, and Material UI a
 
 Build a modern ToDo dashboard that allows users to manage tasks across multiple stages:
 
-Backlog
-In Progress
-Review
-Done
+- **Backlog**
+- **In Progress**
+- **Review**
+- **Done**
 
 ## 🧰 Tech Stack
 
-Next.js (App Router)
-React Query (TanStack Query) – Data fetching & caching
-Material UI (MUI) – UI components
-TypeScript
-json-server – Mock backend API
+- **Next.js (App Router)**
+- **React Query (TanStack Query) – Data fetching & caching**
+- **Material UI (MUI) – UI components**
+- **TypeScript**
+- **json-server – Mock backend API**
 
 ## ✨ Features
 
-📌 Display tasks across 4 Kanban columns
-➕ Create new tasks
-✏️ Edit existing tasks
-❌ Delete tasks
-🔄 Drag & drop tasks between columns
-🔍 Search tasks (by title or description)
-📄 Pagination / Infinite scroll per column
-⚡ Cached API data using React Query
+- **📌 Display tasks across 4 Kanban columns**
+- **➕ Create new tasks**
+- **✏️ Edit existing tasks**
+- **❌ Delete tasks**
+- **🔄 Drag & drop tasks between columns**
+- **🔍 Search tasks (by title or description)**
+- **📄 Infinite scroll per column**
+- **⚡ Cached API data using React Query**
 
 ## 🎨 Design
 
-The UI follows the provided design:
+The UI design we should do:
 
 ![Dashboard Design](public/m3aarf_dashboard_design.png)
 
 ## 🧩 Implementation Preview
 
-Below is the actual implementation of the dashboard based on the provided design:
+The actual implementation of the dashboard based on the provided design:
 
-![Implementation Preview](public/m3aarf_dashboard_implementation.png)
+![Implementation Preview](public/implementation_design.png)
 
 ## 🧪 API (Mock Server)
 
 This project uses json-server as a local mock API.
 
 Start the server:
-npx json-server --watch db.json --port 4000
+
+- **npx json-server --watch db.json --port 4000**
 
 Available endpoints:
-GET /tasks → Fetch all tasks
-POST /tasks → Create a task
-PATCH /tasks/:id → Update a task
-DELETE /tasks/:id → Delete a task
+
+- **GET /tasks → Fetch all tasks**
+- **POST /tasks → Create a task**
+- **PATCH /tasks/:id → Update a task**
+- **DELETE /tasks/:id → Delete a task**
 
 ## 🖥️ Getting Started
 

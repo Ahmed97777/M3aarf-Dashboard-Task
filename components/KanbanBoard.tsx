@@ -3,9 +3,9 @@
 import { useState, useEffect } from "react";
 import { getTasks, updateTask } from "@/lib/api/tasks";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import TaskCard from "./TaskCard";
 import TaskModal from "./TaskModal";
 import KanbanColumn from "./KanbanColumn";
-import TaskCard from "./TaskCard";
 import SearchIcon from "@mui/icons-material/Search";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import { Task, ColumnType, COLUMNS, ModalState } from "@/types/taskTypes";
@@ -186,10 +186,21 @@ export default function KanbanBoard() {
           )}
 
           {!isLoading && !isError && (
-            <Box sx={{ display: "flex", gap: 2, alignItems: "flex-start" }}>
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: {
+                  xs: "1fr",
+                  sm: "repeat(2, 1fr)",
+                  md: "repeat(4, 1fr)",
+                },
+                gap: 2,
+                alignItems: "flex-start",
+              }}
+            >
               {COLUMNS.map((col) => (
                 <KanbanColumn
-                  key={col.id}
+                  key={col.id + tasks.length}
                   column={col}
                   tasks={tasksByColumn(col.id)}
                   onAddTask={(column) =>

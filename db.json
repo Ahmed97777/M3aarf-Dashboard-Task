@@ -69,6 +69,190 @@
       "description": "Set up color palette, typography, and spacing scales",
       "column": "done",
       "priority": "HIGH"
+    },
+    {
+      "id": "11",
+      "title": "Drag and drop",
+      "description": "Enable moving tasks between columns using drag-and-drop",
+      "column": "backlog",
+      "priority": "HIGH"
+    },
+    {
+      "id": "12",
+      "title": "Authentication",
+      "description": "Implement login and signup functionality",
+      "column": "backlog",
+      "priority": "HIGH"
+    },
+    {
+      "id": "13",
+      "title": "Dark mode",
+      "description": "Add dark/light theme toggle",
+      "column": "backlog",
+      "priority": "MEDIUM"
+    },
+    {
+      "id": "14",
+      "title": "Error handling",
+      "description": "Global error handling for API failures",
+      "column": "backlog",
+      "priority": "HIGH"
+    },
+    {
+      "id": "15",
+      "title": "Loading states",
+      "description": "Skeleton loaders and spinners for async actions",
+      "column": "backlog",
+      "priority": "MEDIUM"
+    },
+    {
+      "id": "16",
+      "title": "Search tasks",
+      "description": "Implement search functionality across tasks",
+      "column": "backlog",
+      "priority": "LOW"
+    },
+    {
+      "id": "17",
+      "title": "Filter by priority",
+      "description": "Allow filtering tasks based on priority levels",
+      "column": "backlog",
+      "priority": "LOW"
+    },
+    {
+      "id": "18",
+      "title": "Responsive design",
+      "description": "Ensure the dashboard works well on mobile and tablet",
+      "column": "backlog",
+      "priority": "MEDIUM"
+    },
+    {
+      "id": "19",
+      "title": "Task history",
+      "description": "Track and display task activity history",
+      "column": "backlog",
+      "priority": "LOW"
+    },
+    {
+      "id": "20",
+      "title": "Accessibility improvements",
+      "description": "Enhance keyboard navigation and ARIA support",
+      "column": "backlog",
+      "priority": "MEDIUM"
+    },
+    {
+      "title": "yesr",
+      "description": "yessrysy",
+      "column": "backlog",
+      "priority": "MEDIUM",
+      "id": "ENI0zZYPtL0"
+    },
+    {
+      "id": "21",
+      "title": "Real-time updates",
+      "description": "Integrate WebSocket for live task updates",
+      "column": "in_progress",
+      "priority": "HIGH"
+    },
+    {
+      "id": "22",
+      "title": "Task comments",
+      "description": "Allow users to add and view comments on tasks",
+      "column": "in_progress",
+      "priority": "MEDIUM"
+    },
+    {
+      "id": "23",
+      "title": "File attachments",
+      "description": "Support attaching files to tasks",
+      "column": "in_progress",
+      "priority": "MEDIUM"
+    },
+    {
+      "id": "24",
+      "title": "Keyboard shortcuts",
+      "description": "Add shortcuts for quick task actions",
+      "column": "in_progress",
+      "priority": "LOW"
+    },
+    {
+      "id": "25",
+      "title": "Optimistic updates",
+      "description": "Improve UX with optimistic UI updates using React Query",
+      "column": "in_progress",
+      "priority": "HIGH"
+    },
+
+    {
+      "id": "26",
+      "title": "Task filtering UI",
+      "description": "Add filters by priority and status",
+      "column": "review",
+      "priority": "MEDIUM"
+    },
+    {
+      "id": "27",
+      "title": "Reusable modal component",
+      "description": "Abstract modal logic for reuse across app",
+      "column": "review",
+      "priority": "LOW"
+    },
+    {
+      "id": "28",
+      "title": "API error boundary",
+      "description": "Handle API crashes gracefully with error boundaries",
+      "column": "review",
+      "priority": "HIGH"
+    },
+    {
+      "id": "29",
+      "title": "Loading skeletons",
+      "description": "Replace spinners with skeleton loaders",
+      "column": "review",
+      "priority": "LOW"
+    },
+    {
+      "id": "30",
+      "title": "Form validation",
+      "description": "Add validation using react-hook-form and zod",
+      "column": "review",
+      "priority": "HIGH"
+    },
+
+    {
+      "id": "31",
+      "title": "Refactor folder structure",
+      "description": "Organize components and hooks into scalable structure",
+      "column": "done",
+      "priority": "MEDIUM"
+    },
+    {
+      "id": "32",
+      "title": "Environment configuration",
+      "description": "Setup environment variables for API and configs",
+      "column": "done",
+      "priority": "LOW"
+    },
+    {
+      "id": "33",
+      "title": "Initial project setup",
+      "description": "Setup Next.js project with TypeScript and ESLint",
+      "column": "done",
+      "priority": "HIGH"
+    },
+    {
+      "id": "34",
+      "title": "Basic Kanban layout",
+      "description": "Create initial Kanban board structure",
+      "column": "done",
+      "priority": "HIGH"
+    },
+    {
+      "id": "35",
+      "title": "Drag and drop core",
+      "description": "Implement drag and drop with dnd-kit",
+      "column": "done",
+      "priority": "HIGH"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
